@@ -1,5 +1,5 @@
 {
-  "name": "node-milkcheck",
+  "name": "milkcheck",
   "version": "0.1.0",
   "description": "Shake off dirty values, this is an object checker for nodejs",
   "main": "milkcheck.js",
