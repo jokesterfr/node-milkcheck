@@ -1,0 +1,29 @@
+{
+  "name": "node-milkcheck",
+  "version": "0.1.0",
+  "description": "Shake off dirty values, this is an object checker for nodejs",
+  "main": "milkcheck.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jokesterfr/node-milkcheck.git"
+  },
+  "keywords": [
+    "check",
+    "checker",
+    "values",
+    "assert",
+    "milk",
+    "milkcheck",
+    "milk-check",
+    "milkshake"
+  ],
+  "author": "Clément Désiles <main@jokester.fr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jokesterfr/node-milkcheck/issues"
+  },
+  "homepage": "https://github.com/jokesterfr/node-milkcheck"
+}
