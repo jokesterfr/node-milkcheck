@@ -57,7 +57,9 @@ While checking a variable, you can pass some checking options to *milkcheck*, su
 
 Usage:
 
-    milkcheck.check(user, { sanitize: true });
+```javascript
+milkcheck.check(user, { sanitize: true });
+```
 
 Built-in types
 ---------------
@@ -172,33 +174,35 @@ This package will never be exhaustive in that topic, so we provide a method to e
 
 Example of use:
 
-    var lolcat = function(schema) {
-        return milkcheck.extend(schema, {
-            type: 'string',
-            check: function (obj, opt) {
-                if (schema.cheat) return true;
+```javascript
+var lolcat = function(schema) {
+    return milkcheck.extend(schema, {
+        type: 'string',
+        check: function (obj, opt) {
+            if (schema.cheat) return true;
 
-                // Count lolcat occurencies
-                var l = (obj.match(/(lol|cuz|haz)/g) || []).length; 
+            // Count lolcat occurencies
+            var l = (obj.match(/(lol|cuz|haz)/g) || []).length; 
 
-                // Check ratio
-                if (l < (obj.length / 6)) {
-                    return false;
-                }
-
-                // sanitize the string
-                if (opt.sanitize) {
-                    return 'lol'; // <- this is the more sensible thing to say so far
-                }
-                return true;
+            // Check ratio
+            if (l < (obj.length / 6)) {
+                return false;
             }
-        }
-    });
 
-    // Use it in our schema
-    var schema = new milkshake.Schema({
-        watIwilSay2u: lolcat({ cheat: true })
-    })
+            // sanitize the string
+            if (opt.sanitize) {
+                return 'lol'; // <- this is the more sensible thing to say so far
+            }
+            return true;
+        }
+    }
+});
+
+// Use it in our schema
+var schema = new milkshake.Schema({
+    watIwilSay2u: lolcat({ cheat: true })
+})
+```
 
 Play nicely with restify
 ------------------------
