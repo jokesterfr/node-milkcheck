@@ -117,8 +117,8 @@ More types are coming soon, for now I only needed these:
 
 milkcheck.__mac__() takes a schema object:
 
-     *     schema.mandatory - value can't be undefined or null (complete check)
-     *     schema.value - exact value the string must have
+    schema.mandatory - value can't be undefined or null (complete check)
+    schema.value - exact value the string must have
 
 Example: *a0:b1:c2:d3:e4:f5*
 
@@ -126,8 +126,8 @@ Example: *a0:b1:c2:d3:e4:f5*
 
 milkcheck.__ipv4__() takes a schema object:
 
-     *     schema.mandatory - value can't be undefined or null (complete check)
-     *     schema.value - exact value the string must have
+    schema.mandatory - value can't be undefined or null (complete check)
+    schema.value - exact value the string must have
 
 Example: *192.168.0.22*
 
@@ -135,8 +135,8 @@ Example: *192.168.0.22*
 
 milkcheck.__ipv6__() takes a schema object:
 
-     *     schema.mandatory - value can't be undefined or null (complete check)
-     *     schema.value - exact value the string must have
+    schema.mandatory - value can't be undefined or null (complete check)
+    schema.value - exact value the string must have
 
 Example: *FE80:0000:0000:0000:0202:B3FF:FE1E:8329*
 
@@ -144,8 +144,8 @@ Example: *FE80:0000:0000:0000:0202:B3FF:FE1E:8329*
 
 milkcheck.__objectId__() takes a schema object:
 
-     *     schema.mandatory - value can't be undefined or null (complete check)
-     *     schema.value - exact value the string must have
+    schema.mandatory - value can't be undefined or null (complete check)
+    schema.value - exact value the string must have
 
 Example: *53f4b9031cf6455b326f4c7a*
 
@@ -153,8 +153,8 @@ Example: *53f4b9031cf6455b326f4c7a*
 
 milkcheck.__email__() takes a schema object:
 
-     *     schema.mandatory - value can't be undefined or null (complete check)
-     *     schema.value - exact value the string must have
+    schema.mandatory - value can't be undefined or null (complete check)
+    schema.value - exact value the string must have
 
 Example: *main@jokester.fr*
 
@@ -162,8 +162,8 @@ Example: *main@jokester.fr*
 
 milkcheck.__siret__() takes a schema object:
 
-     *     schema.mandatory - value can't be undefined or null (complete check)
-     *     schema.value - exact value the string must have
+    schema.mandatory - value can't be undefined or null (complete check)
+    schema.value - exact value the string must have
 
 Example: *532 685 104 00012* or *53268510400012*
 
