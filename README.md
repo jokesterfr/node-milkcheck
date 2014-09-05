@@ -42,6 +42,7 @@ var user = {
 // Check user data
 try { milkcheck.check(user) }
 catch (e) {
+    console.error(e.name); // "InvalidContent"
     console.error(e.message); // "role is invalid"
 }
 ```
@@ -52,6 +53,7 @@ Checking a variable
 While checking a variable, you can pass some checking options to *milkcheck*, such as:
 
 * __sanitize__: for extended types which support it, this can change the format on the fly of recognized format (ie: fix missing spaces, lowercase...). This highly depends on the chosen convention, and helps getting homogeneous strings with more flexible entries.
+* __partial__: this will tell the checker to check only given variable, and not throw any error if one is missing (even mandatory ones). This is useful if you consider editing the content partially.
 
 (no other option so far, contribute if you need more).
 
@@ -142,7 +144,7 @@ Example: *FE80:0000:0000:0000:0202:B3FF:FE1E:8329*
 
 ### MongoDB ObjectId
 
-milkcheck.__objectId__() takes a schema object:
+milkcheck.__mongoId__() takes a schema object:
 
     schema.mandatory - value can't be undefined or null (complete check)
     schema.value - exact value the string must have
@@ -207,18 +209,36 @@ var schema = new milkshake.Schema({
 Play nicely with restify
 ------------------------
 
-This project aim to simplify the way you check input data, and this design is particularly helpfull if you want to check data from a webservice to write them in a database.
-If you use [restify](http://mcavage.me/node-restify/), you can check your input data this way for instance:
+This project aim to simplify the way you check input data, and this design is especially helpful if you want to check data from a webservice before writing them in a database.
+For example if you use [restify](http://mcavage.me/node-restify/), you can check your input data this way:
 
 ```javascript
-// Check new val integrity
-try { milkcheck.check(req.params) }
-catch (e) {
-    var r;
-    if (e.name === 'missing') { r = restify.MissingParameterError }
-    else { r = restify.InvalidContentError }
-    return next(new r(e.message));
-}
+var schema = new milkcheck.Schema({
+    name: milkcheck.string()
+});
+
+server.put('/suppliers', function (req, res, next) {
+    schema.check(req.params);
+    db.collection('suppliers').insert(supplier, function (err, result) {
+        if (err) return next(restify.BadGatewayError('db error'));
+        res.send(result);
+        return next();
+    });
+});
+
+server.on('uncaughtException', function (req, res, route, err) {
+    switch (err.name) {
+        case 'MissingParameter': 
+            res.send(new restify.MissingParameterError(e.message));
+            break;
+        case 'InvalidContent':
+            res.send(new restify.InvalidContentError(e.message));
+            break;
+        default:
+            res.send(new restify.InternalError(err.message));
+            break;
+    }
+});
 ```
 
 Contributing
